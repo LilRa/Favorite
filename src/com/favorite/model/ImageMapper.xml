@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="Img">
+
+	<insert id="insert" parameterType="Img">
+		 insert into img(img_name,img_extension,market_id) 
+		 values(#{img_name},#{img_extension},#{market_id})
+	</insert>
+ </mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<typeAliases>
+	<typeAlias type="com.favorite.model.User" alias="User"/> 
+	<typeAlias type="com.favorite.model.Market" alias="Market"/> 
+	<typeAlias type="com.favorite.model.Business" alias="Business"/> 
+	<typeAlias type="com.favorite.model.Place" alias="Place"/> 
+	<typeAlias type="com.favorite.model.Area" alias="Area"/> 
+	<typeAlias type="com.favorite.model.Img" alias="Img"/>                    
+</typeAliases>
+<mappers>
+    <mapper resource="com/favorite/model/UserMapper.xml"/>
+    <mapper resource="com/favorite/model/MarketMapper.xml"/>
+    <mapper resource="com/favorite/model/BusinessMapper.xml"/>
+    <mapper resource="com/favorite/model/PlaceMapper.xml"/>
+    <mapper resource="com/favorite/model/AreaMapper.xml"/>
+    <mapper resource="com/favorite/model/ImageMapper.xml"/>
+</mappers> 
+</configuration>

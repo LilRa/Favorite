@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="Market">
+ 
+ <resultMap type="Market" id="MarketMap">
+ 	<id column="market_id" property="market_id"/>
+ 	<result column="market_title" property="market_title"/>
+ 	<result column="phone" property="phone"/>
+ 	<result column="grade" property="grade"/>
+ 	<result column="agree" property="agree"/>
+ 	<result column="business_id" property="business_id"/>
+ 	<result column="area_id" property="area_id"/>
+ 	<result column="place_id" property="place_id"/>
+ 	<association property="area" resultMap="AreaMap" ></association> 
+ 	<association property="business" resultMap="BusinessMap" ></association> 
+ 	<association property="place" resultMap="PlaceMap" ></association> 
+ 	<collection property="img" javaType="List" ofType="img">
+ 		<id column="img_id" property="img_id"/>
+ 		<result column="img_name" property="img_name"/>
+ 		<result column="img_extension" property="img_extension"/>
+ 		<result column="market_id" property="market_id"/>
+ 	</collection>
+ </resultMap>
+ 
+ <resultMap type="Area" id="AreaMap">
+ <id column="area_id" property="area_id"/>
+ <result column="area_name" property="area_name"/>
+ </resultMap>
+ 
+  <resultMap type="Business" id="BusinessMap">
+ <id column="business_id" property="business_id"/>
+ <result column="business_name" property="business_name"/>
+ </resultMap>
+ 
+  <resultMap type="Place" id="PlaceMap">
+ <id column="place_x" property="place_x"/>
+ <result column="place_x" property="place_x"/>
+ </resultMap>
+ 
+ 
+ 
+ 	<select id="selectAll"  parameterType="int" resultMap="MarketMap">
+		select m.market_id as market_id ,market_title,phone,grade,agree,
+		m.business_id as business_id,m.area_id as area_id,m.place_id as place_id,
+		b.business_name,
+		a.area_name,
+		p.place_x,p.place_y,
+		i.img_name,i.img_extension
+		from market m 
+		inner join business b on m.business_id = b.business_id 
+		inner join area a on m.area_id = a.area_id
+		inner join place p on m.place_id = p.place_id 
+		inner join img i on m.market_id = i.market_id
+		where agree = #{agree}
+ 	</select>
+ 	
+ 	<!-- 가계 정보 추가  -->
+ 	<insert id="insert" parameterType="Market">
+ 	insert into market(market_title,phone,grade,business_id,area_id,place_id,agree,user_id)
+ 	values(#{market_title},#{phone},#{grade},#{business_id},#{area_id},#{place_id},#{agree},#{user_id})
+ 	<!-- 추가하고 추가한 기본 키값을 받아온다 -->
+ 	<selectKey  keyProperty="market_id" resultType="int" order="AFTER">
+ 	select last_insert_id()
+ 	</selectKey>
+ 	</insert>
+ </mapper>
