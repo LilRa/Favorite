@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="Business">
-	<select id="selectAll" resultType="Business">
-		select * from business
+ <mapper namespace="BookMark">
+	<select id="selectAll" parameterType="int" resultType="Bookmark">
+	select * from bookmark where user_id = #{user_id}
 	</select>
  </mapper>

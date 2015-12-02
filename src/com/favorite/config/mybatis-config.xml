@@ -10,6 +10,7 @@
 	<typeAlias type="com.favorite.model.Place" alias="Place"/> 
 	<typeAlias type="com.favorite.model.Area" alias="Area"/> 
 	<typeAlias type="com.favorite.model.Img" alias="Img"/>                    
+	<typeAlias type="com.favorite.model.Bookmark" alias="BookMark"/>                    
 </typeAliases>
 <mappers>
     <mapper resource="com/favorite/model/UserMapper.xml"/>
@@ -17,6 +18,6 @@
     <mapper resource="com/favorite/model/BusinessMapper.xml"/>
     <mapper resource="com/favorite/model/PlaceMapper.xml"/>
     <mapper resource="com/favorite/model/AreaMapper.xml"/>
-    <mapper resource="com/favorite/model/ImageMapper.xml"/>
+    <mapper resource="com/favorite/model/BookMarkMapper.xml"/>
 </mappers> 
 </configuration>

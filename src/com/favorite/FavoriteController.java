@@ -32,9 +32,28 @@ public class FavoriteController {
 	@Autowired
 	private FileManager fileManager;
 	
+	@RequestMapping("BookMarkList.do")
+	public ModelAndView bookmarkSelectAll(int user_id){
+		List list = favoriteService.bookmarkSelectAll(user_id);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("BookMarkList");
+		mav.addObject("list", list);
+		return mav;
+	}
+	
+	// 업종정보 불러오기
+	@RequestMapping("BusinessList.do")
+	public ModelAndView businessSelectAll(){
+		List list = favoriteService.businessSelectAll();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("BusinessList");
+		mav.addObject("list", list);
+		return mav;
+	}
+	
+	// 지역 정보 불러오기
 	@RequestMapping("/AreaList.do")
 	public ModelAndView areaSelectAll(){
-		
 		List list = favoriteService.areaSelectAll();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("AreaList");

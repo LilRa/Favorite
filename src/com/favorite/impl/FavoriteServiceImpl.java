@@ -28,11 +28,24 @@ public class FavoriteServiceImpl implements  FavoriteService {
 		favoriteDAO.insert(market);
 
 	}
-	
+	// 지역 정보 불러오기
 	@Override
 	public List areaSelectAll() {
 		// TODO Auto-generated method stub
 		List list = favoriteDAO.areaSelectAll();
+		return list;
+	}
+	// 업종 정보 불러오기
+	@Override
+	public List businessSelectAll() {
+		// TODO Auto-generated method stub
+		List list = favoriteDAO.businessSelectAll();
+		return list;
+	}
+	@Override
+	public List bookmarkSelectAll(int user_id) {
+		// TODO Auto-generated method stub
+		List list = favoriteDAO.bookmarkSelectAll(user_id);
 		return list;
 	}
 

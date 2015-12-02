@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.favorite.model.Bookmark;
 import com.favorite.model.FavoriteDAO;
 import com.favorite.model.Img;
 import com.favorite.model.Market;
@@ -47,7 +48,7 @@ public class FavoriteDAOImlp extends SqlSessionDaoSupport implements FavoriteDAO
 	}
 
 
-
+	// 지역 정보 불러오
 	@Override
 	public List areaSelectAll() {
 		// TODO Auto-generated method stub
@@ -55,5 +56,25 @@ public class FavoriteDAOImlp extends SqlSessionDaoSupport implements FavoriteDAO
 		System.out.println(list.size());
 		return list;
 	}
+	// 업종 정보 불러오기
+	@Override
+	public List businessSelectAll() {
+		// TODO Auto-generated method stub
+		List list = getSqlSession().selectList("Business.selectAll");
+		System.out.println(list.size());
+		return list;
+	}
+	// 즐겨 찾기 불러오기
+	@Override
+	public List bookmarkSelectAll(int user_id) {
+		// TODO Auto-generated method stub
+		System.out.println(user_id);
+		List list = getSqlSession().selectList("BookMark.selectAll",user_id);
+	/*	Bookmark bookmark = (Bookmark)list.get(0);*/
+		System.out.println(list.size());
+	/*	System.out.println(bookmark.getUser_id());*/
+		return list;
+	}
+
 
 }
