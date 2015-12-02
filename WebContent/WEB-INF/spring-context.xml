@@ -15,8 +15,9 @@
 	<context:component-scan base-package="com.favorite">
 	<context:include-filter type="annotation" 
 	expression="org.springframework.stereotype.Controller"/>
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+	<!-- 	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Component"/> -->
 	</context:component-scan>
 	
 	<context:annotation-config/>
@@ -28,7 +29,7 @@
 	<bean id="multipartResolver" 
 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
-	<!-- 어플리케이션에 걸쳐 전반적으로 적용할 트랜잭션 설정 -->
+	<!-- 어플리케이션에 걸쳐 전반적으로 적용할 트랜잭션 설정!! -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="insert" propagation="REQUIRED"/>
@@ -36,11 +37,12 @@
 			<tx:method name="delete" propagation="REQUIRED"/>
 		</tx:attributes>
 	</tx:advice>
-		
+	
 	<aop:config>
-		<aop:pointcut expression="execution(public * com.sds..*Service.*(..))" 
-			id="servicePointcut"/>			
+		<aop:pointcut expression="execution(public * com.favorite..*Service.*(..))" id="servicePointcut"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>
 	</aop:config>
+	
+
 	
 </beans>

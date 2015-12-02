@@ -6,4 +6,5 @@ public interface FavoriteDAO {
 	
 	public List selectAll(int agree);
 	public void insert(Market market);
+	public List areaSelectAll();
 }

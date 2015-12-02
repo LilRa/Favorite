@@ -12,13 +12,15 @@ import com.favorite.model.Place;
 @Repository
 public class FavoriteDAOImlp extends SqlSessionDaoSupport implements FavoriteDAO {
 
+	// 가계정보 리스트 출력
 	@Override
 	public List selectAll(int agree) {
 		// TODO Auto-generated method stub
 		 List list= getSqlSession().selectList("Market.selectAll",agree);
 		return list;
 	}
-
+	
+	// 가계 정보 입력
 	@Override
 	public void insert(Market market) {
 		// TODO Auto-generated method stub
@@ -42,6 +44,16 @@ public class FavoriteDAOImlp extends SqlSessionDaoSupport implements FavoriteDAO
 			getSqlSession().insert("Img.insert", imgList.get(i));
 		}
 		throw new RuntimeException();	
+	}
+
+
+
+	@Override
+	public List areaSelectAll() {
+		// TODO Auto-generated method stub
+		List list = getSqlSession().selectList("Area.selectAll");
+		System.out.println(list.size());
+		return list;
 	}
 
 }

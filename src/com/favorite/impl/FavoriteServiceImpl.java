@@ -13,18 +13,27 @@ import com.favorite.model.Market;
 public class FavoriteServiceImpl implements  FavoriteService {
 	@Autowired
 	private FavoriteDAO favoriteDAO;
+	// 가계 정보 불러오기
 	@Override
 	public List selectAll(int agree) {
 		// TODO Auto-generated method stub
 		List list = favoriteDAO.selectAll(agree);
 		return list;
 	}
+	// 가계 정보 추가
 	@Override
 	public void insert(Market market) {
 		// TODO Auto-generated method stub
 		System.out.println(market.getMarket_title());
 		favoriteDAO.insert(market);
 
+	}
+	
+	@Override
+	public List areaSelectAll() {
+		// TODO Auto-generated method stub
+		List list = favoriteDAO.areaSelectAll();
+		return list;
 	}
 
 }

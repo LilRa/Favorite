@@ -2,6 +2,8 @@ package com.favorite.model;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Market {
 	private int market_id; 
 	private String market_title; 
@@ -12,12 +14,20 @@ public class Market {
 	private int area_id;
 	private int place_id;
 	private int user_id;
-	
+	private MultipartFile[] favoriteFile;
 
 	private Business business;
 	private Area area;
 	private Place place;
 	private List img;
+	
+
+	public MultipartFile[] getFavoriteFile() {
+		return favoriteFile;
+	}
+	public void setFavoriteFile(MultipartFile[] favoriteFile) {
+		this.favoriteFile = favoriteFile;
+	}
 	public int getMarket_id() {
 		return market_id;
 	}

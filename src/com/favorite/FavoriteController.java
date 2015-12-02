@@ -3,9 +3,11 @@ package com.favorite;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.websocket.Session;
 
 import org.apache.catalina.connector.Request;
+import org.apache.tomcat.jni.Socket;
 import org.eclipse.jdt.internal.compiler.ast.MarkerAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,18 +15,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.favorite.common.FileManager;
 import com.favorite.model.FavoriteService;
 import com.favorite.model.Img;
 import com.favorite.model.Market;
 import com.favorite.model.Place;
 
 
+
 @Controller
 public class FavoriteController {
 	@Autowired
 	private FavoriteService favoriteService;
+	@Autowired
+	private ServletContext context;
+	@Autowired
+	private FileManager fileManager;
+	
+	@RequestMapping("/AreaList.do")
+	public ModelAndView areaSelectAll(){
 		
+		List list = favoriteService.areaSelectAll();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("AreaList");
+		mav.addObject("list", list);
+		return mav;
+	}
 
 	@RequestMapping("/MarketList.do")
 	public ModelAndView selectAll(int agree){
@@ -39,6 +55,7 @@ public class FavoriteController {
 	
 	@RequestMapping("/MarketAdd.do")
 	public ModelAndView Insert(Market market){
+		
 		System.out.println("³Ñ¾î¿È " + market);
 		List<Img> list = new ArrayList<Img>();
     	market.setAgree(1);
