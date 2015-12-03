@@ -3,7 +3,18 @@
   PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="BookMark">
-	<select id="selectAll" parameterType="int" resultType="Bookmark">
-	select * from bookmark where user_id = #{user_id}
+	<select id="selectAll" parameterType="Bookmark" resultType="Bookmark">
+	select * from bookmark where user_id = #{user_id} and  bookmark_flag = #{bookmark_flag}
 	</select>
+	
+	<insert id="insert" parameterType="Bookmark">
+		insert into bookmark(user_id, market_id) values(#{user_id},#{market_id})
+	</insert>
+	
+	<update id="update" parameterType="Bookmark">
+	update bookmark set bookmark_flag = #{bookmark_flag} where user_id = #{user_id}
+	and market_id = {market_id}
+	
+	</update>
+	
  </mapper>

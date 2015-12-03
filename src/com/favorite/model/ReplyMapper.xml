@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="Reply">
+	<select id="selectAll" parameterType="int" resultType="Reply">
+	select * from reply where market_id = #{market_id}
+	</select>
+	<insert id="insert" parameterType="Reply">
+		insert into reply(content,grade,user_id,market_id) 
+		values(#{content},#{grade},#{user_id},#{market_id})
+	</insert>
+ </mapper>

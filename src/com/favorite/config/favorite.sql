@@ -24,7 +24,8 @@ place_y varchar(50)
 create table user(
 user_id int primary key auto_increment,
 email varchar(100),
-name varchar(20)
+name varchar(20),
+block_flag int DEFAULT 0
 )default charset utf8;
 
 
@@ -54,6 +55,7 @@ create table bookmark(
 bookmark_id int primary key auto_increment,
 user_id int,
 market_id int,
+bookmark_flag int DEFAULT 0,
 FOREIGN KEY (user_id) REFERENCES user (user_id) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (market_id) REFERENCES market (market_id) ON UPDATE CASCADE ON DELETE CASCADE
 )default charset utf8;
@@ -65,7 +67,9 @@ reply_id  int primary key auto_increment,
 content text,
 grade int,
 user_id int,
-FOREIGN KEY (user_id) REFERENCES user (user_id) ON UPDATE CASCADE ON DELETE CASCADE
+market_id int,
+FOREIGN KEY (user_id) REFERENCES user (user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (market_id) REFERENCES market (market_id) ON UPDATE CASCADE ON DELETE CASCADE
 )default charset utf8;
 
 -- 이미지 --
@@ -163,7 +167,7 @@ insert into market(market_title,phone,grade,business_id,area_id,place_id,agree,u
  
  
  -- 리플 정보
- insert into reply(content,grade,user_id) values('내용',5,1);
+ insert into reply(content,grade,user_id,market_id) values('내용',5,1,1);
  
  -- 이미지
  insert into img(img_name,img_extension,market_id) values('이미지이름','.확장자',1);

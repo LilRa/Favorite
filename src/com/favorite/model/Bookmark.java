@@ -4,6 +4,14 @@ public class Bookmark {
 	private int bookmark_id;
 	private int user_id;
 	private int market_id;
+	private int bookmark_flag;
+	
+	public int getBookmark_flag() {
+		return bookmark_flag;
+	}
+	public void setBookmark_flag(int bookmark_flag) {
+		this.bookmark_flag = bookmark_flag;
+	}
 	public int getBookmark_id() {
 		return bookmark_id;
 	}

@@ -4,6 +4,15 @@ public class Reply {
 	private int reply_id;
 	private String content;
 	private int user_id;
+	private int market_id;
+	
+	
+	public int getMarket_id() {
+		return market_id;
+	}
+	public void setMarket_id(int market_id) {
+		this.market_id = market_id;
+	}
 	public int getReply_id() {
 		return reply_id;
 	}

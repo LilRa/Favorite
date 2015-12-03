@@ -32,9 +32,10 @@
 	<!-- 어플리케이션에 걸쳐 전반적으로 적용할 트랜잭션 설정!! -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="insert" propagation="REQUIRED"/>
-			<tx:method name="update" propagation="REQUIRED"/>
-			<tx:method name="delete" propagation="REQUIRED"/>
+			<tx:method name="*insert*" propagation="REQUIRED"/>
+			<tx:method name="*Insert*" propagation="REQUIRED"/>
+			<tx:method name="*update*" propagation="REQUIRED"/>
+			<tx:method name="*delete*" propagation="REQUIRED"/>
 		</tx:attributes>
 	</tx:advice>
 	

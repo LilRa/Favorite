@@ -10,6 +10,7 @@ import com.favorite.model.FavoriteDAO;
 import com.favorite.model.Img;
 import com.favorite.model.Market;
 import com.favorite.model.Place;
+import com.favorite.model.User;
 @Repository
 public class FavoriteDAOImlp extends SqlSessionDaoSupport implements FavoriteDAO {
 
@@ -30,11 +31,15 @@ public class FavoriteDAOImlp extends SqlSessionDaoSupport implements FavoriteDAO
 		// 이미지 정보 추출
 		List<Img> imgList = market.getImg();
 		// 위치 정보 DB에 추가
-		getSqlSession().insert("Place.insert", place);
+		if(getSqlSession().insert("Place.insert", place) == 0){
+			throw new RuntimeException();	
+		}
 		// 추가한 위치 정보 id 가져옴
 		 market.setPlace_id(place.getPlace_id());
 		 // 가계정보 추가
-		 getSqlSession().insert("Market.insert", market);
+		 if(getSqlSession().insert("Market.insert", market)==0){
+				throw new RuntimeException();	
+		 }
 		 // 가계 id 이미지 정보에 추가
 		 for(int i = 0; i < imgList.size(); i++){
 			 imgList.get(i).setMarket_id(market.getMarket_id());
@@ -42,9 +47,11 @@ public class FavoriteDAOImlp extends SqlSessionDaoSupport implements FavoriteDAO
 		 } 
 		 // 이미지 정보 추가
 		for(int i=0; i < imgList.size(); i++){
-			getSqlSession().insert("Img.insert", imgList.get(i));
+			if(getSqlSession().insert("Img.insert", imgList.get(i)) == 0){
+				throw new RuntimeException();	
+			}
 		}
-		throw new RuntimeException();	
+		
 	}
 
 
@@ -66,14 +73,30 @@ public class FavoriteDAOImlp extends SqlSessionDaoSupport implements FavoriteDAO
 	}
 	// 즐겨 찾기 불러오기
 	@Override
-	public List bookmarkSelectAll(int user_id) {
+	public List bookmarkSelectAll(Bookmark bookmark) {
 		// TODO Auto-generated method stub
-		System.out.println(user_id);
-		List list = getSqlSession().selectList("BookMark.selectAll",user_id);
+	
+		List list = getSqlSession().selectList("BookMark.selectAll",bookmark);
 	/*	Bookmark bookmark = (Bookmark)list.get(0);*/
 		System.out.println(list.size());
 	/*	System.out.println(bookmark.getUser_id());*/
 		return list;
+	}
+	// 사용자 정보 저장
+	@Override
+	public void userInsert(User user) {
+		// TODO Auto-generated method stub
+		int result = getSqlSession().insert("User.insert",user);
+		if(result == 0){
+			throw new RuntimeException();	
+		}	
+	}
+	// 사용자 정보 검색
+	@Override
+	public User userSelectOne(User user) {
+		// TODO Auto-generated method stub
+		User result = getSqlSession().selectOne("User.selectOne",user);
+		return result;
 	}
 
 
