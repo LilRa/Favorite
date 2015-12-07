@@ -17,6 +17,6 @@ public interface FavoriteDAO {
 	public void userInsert(User user);
 	// 유저 정보 불러오기
 	public User userSelectOne(User user);
-	// 즐겨찾기 정보 삭제
+	// 즐겨찾기 정보 변경
 
 }
